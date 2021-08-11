@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WatchTowerWebApp.Models.CoWatcher>
+
+@{
+    ViewData["Title"] = "Your CoWatchers!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Your CoWatchers!</h1>
+
+@*Role check to decide if Create New option should be visible*@
+@if (User.IsInRole("Administrator") || User.IsInRole("AppUser"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table table-striped sortable">
+    <thead>
+        <tr>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.FirstName)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.LastName)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.WatchTime)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WatchTime)
+                </td>
+                @*If statement checks roles
+                    if user has an authorized role, the full CRUD options will be available to them
+                    otherwise, the user will be limited to the detials selection*@
+                @if (User.IsInRole("Administrator") || User.IsInRole("AppUser"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+                else
+                {
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

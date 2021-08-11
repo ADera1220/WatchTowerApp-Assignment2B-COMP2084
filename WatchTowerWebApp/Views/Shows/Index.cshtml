@@ -1,0 +1,81 @@
+﻿@model IEnumerable<WatchTowerWebApp.Models.Show>
+
+@{
+    ViewData["Title"] = "Your Shows | WatchTower";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Your Shows</h1>
+@*Role check to decide if Create New option should be visible*@
+@if (User.IsInRole("Administrator") || User.IsInRole("AppUser"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table table-striped sortable">
+    <thead>
+        <tr>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.Title)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.TotalEpisode)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.CurrentEpisode)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.NextRelease)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.Service)</a>
+            </th>
+            <th>
+                <a href='#'>@Html.DisplayNameFor(model => model.CoWatcher)</a>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalEpisode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentEpisode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NextRelease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoWatcher.FirstName)
+            </td>
+            @*If statement checks roles
+            if user has an authorized role, the full CRUD options will be available to them
+            otherwise, the user will be limited to the detials selection*@
+            @if (User.IsInRole("Administrator") || User.IsInRole("AppUser"))
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> | 
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> | 
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            }
+            else
+            {
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            }
+        </tr>
+}
+    </tbody>
+</table>

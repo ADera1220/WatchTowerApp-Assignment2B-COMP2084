@@ -1,0 +1,47 @@
+﻿@model WatchTowerWebApp.Models.CoWatcher
+
+@{
+    ViewData["Title"] = "All About Your Friends";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All About Your Friends</h1>
+
+<div class="details-container">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.WatchTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.WatchTime)
+        </dd>
+    </dl>
+</div>
+@*To avoid any confusion, this section removes the edit button for anyone
+without authorization*@
+@if (User.IsInRole("Administrator") || User.IsInRole("AppUser"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+else
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}

@@ -1,0 +1,59 @@
+﻿@model WatchTowerWebApp.Models.Show
+
+@{
+    ViewData["Title"] = "Update your show!";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Update your show!</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalEpisode" class="control-label"></label>
+                <input asp-for="TotalEpisode" class="form-control" />
+                <span asp-validation-for="TotalEpisode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentEpisode" class="control-label"></label>
+                <input asp-for="CurrentEpisode" class="form-control" />
+                <span asp-validation-for="CurrentEpisode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NextRelease" class="control-label"></label>
+                <input asp-for="NextRelease" class="form-control" />
+                <span asp-validation-for="NextRelease" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceId" class="control-label"></label>
+                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+                <span asp-validation-for="ServiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoWatcherId" class="control-label"></label>
+                <select asp-for="CoWatcherId" class="form-control" asp-items="ViewBag.CoWatcherId"></select>
+                <span asp-validation-for="CoWatcherId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,53 @@
+﻿@model WatchTowerWebApp.Models.Service
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div class="details-container">
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Platform)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Platform)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RenewalDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RenewalDate)
+        </dd>
+    </dl>
+</div>
+@*To avoid any confusion, this section removes the edit button for anyone
+    without authorization*@
+@if (User.IsInRole("Administrator") || User.IsInRole("AppUser"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+else
+{
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
