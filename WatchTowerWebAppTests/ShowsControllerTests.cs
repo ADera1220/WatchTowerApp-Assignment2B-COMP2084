@@ -133,17 +133,27 @@ namespace WatchTowerWebAppTests
         [TestMethod]
         public void NullIDReturnsNotFound()
         {
-            // Create an expected output for NotFound()
-            var expected = controller.NotFound().ToString();
+
             // Pass a null value into the Delete Method
             var result = controller.Delete(null);
-            // Convert the result into a string
-            var viewResult = result.Result.ToString();
+            // Convert the result into a NotFoundResult and store it
+            var notFoundResult = (NotFoundResult)result.Result;
 
-            //Assert that the page will return "Not Found"
-            Assert.AreEqual(expected, viewResult);
+            //Assert that the page will return a 404 error
+            Assert.AreEqual(404, notFoundResult.StatusCode);
         }
 
-        
+        // Test 4: If an INVALID ID is presented, test if app returns not found
+        [TestMethod]
+        public void InvalidIDReturnsNotFound()
+        {
+            // Pass an Invalid ID into the .Delete() Method and store the result
+            var result = controller.Delete(999);
+            // Convert the result into a NotFoundResult and store it
+            var notFoundResult = (NotFoundResult)result.Result;
+
+            //Assert that the page will return a 404 error
+            Assert.AreEqual(404, notFoundResult.StatusCode);
+        }
     }
 }
