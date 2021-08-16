@@ -1,5 +1,5 @@
 <h1>WatchTower Web App</h1>
-<a href="https://watchtowerapp.azurewebsites.net/">LINK TO AZURE DEPLOYED SITE</a>
+<a href="https://watchtowerapp.azurewebsites.net/">SITE IS NOT LIVE DUE TO PROBLEMS WITH AZURE</a>
 <h2>Project for COMP 2084 - Server-Sider Scripting with ASP.NET</h2>
 <p>This web app will allow users to track their progress in television series across streaming services, cableTV or DVD/Blu-Ray Disc</p>
 
@@ -35,13 +35,9 @@
 <ul>
   <li><h5>Test 1:</h5> Does the "Delete" View load?</li>  
   <li><h5>Test 2:</h5> Tests if the correct "Show" record is loaded onto the page</li>  
-  <li><h5>Test 3:</h5> If ID=null, tests if app returns NotFound()</li>  
+  <li><h5>Test 3:</h5> If ID=null, tests if app returns NotFound()</li>
+  <li><h5>Test 4:</h5> If Delete() is passed an INVALID ID, tests if app returns NotFound()</li> 
 </ul>
 
 <h3>Issues</h3>
 <p>I struggled a bit in this assignment, mostly due to a mixup with access control and references. My main issue was a missing "public" access modifier that was not pointed out to me by Visual Studio, and required me to check backlogs every time I rebuilt the solution. I notice it was telling me that MSTEST's Discover feature wasn't finding tests because it did not have access. So I checked and noticed the missing public keyword and the system began working. </p>
-
-<h3>Assignment 2C</h3>
-<p>Created a WebAPI for the Shows</p>
-
-<p>Scaffolded WebAPI Controller called ShowsControllerApi allows for API access to the Show database context!</p>
