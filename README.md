@@ -40,3 +40,8 @@
 
 <h3>Issues</h3>
 <p>I struggled a bit in this assignment, mostly due to a mixup with access control and references. My main issue was a missing "public" access modifier that was not pointed out to me by Visual Studio, and required me to check backlogs every time I rebuilt the solution. I notice it was telling me that MSTEST's Discover feature wasn't finding tests because it did not have access. So I checked and noticed the missing public keyword and the system began working. </p>
+
+<h3>Assignment 2C</h3>
+<p>Created a WebAPI for the Shows</p>
+
+<p>Scaffolded WebAPI Controller called ShowsControllerApi allows for API access to the Show database context!</p>
