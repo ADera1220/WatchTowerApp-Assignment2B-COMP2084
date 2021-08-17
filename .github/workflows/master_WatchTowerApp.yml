@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'WatchTowerApp'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_0bfab69d6f1d4b449b53807a5324a2c5 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ac6b4f7ebd2e439e893c72484f242dfa }}
         package: .
